@@ -4,9 +4,9 @@
 
 ### Table of contents
 
-+ <a href="">Loading .ele, .node and .obj</a>
-+ <a href="">Saving .ele, .node and .obj</a>
-+ <a href="">Line segment intersection in 2D</a>
++ <a href="https://github.com/scraptechguy/twet/blob/main/docs/DOCUMENTATION.md#loading-ele-node-and-obj">Loading .ele, .node and .obj</a>
++ <a href="https://github.com/scraptechguy/twet/blob/main/docs/DOCUMENTATION.md#saving-ele-node-and-obj">Saving .ele, .node and .obj</a>
++ <a href="https://github.com/scraptechguy/twet/blob/main/docs/DOCUMENTATION.md#line-segment-intersection-in-2d">Line segment intersection in 2D</a>
 
 
 ## Loading .ele, .node and .obj
@@ -27,7 +27,9 @@
 
 ## Line segment intersection in 2D
 
-+ bla bla 
+<a href="https://github.com/scraptechguy/twet/blob/main/docs/segments/line_segment_intersection_2D.py">line_segment_intersection_2D.py</a>
+
++ bla bla
 
 ```
 ```
