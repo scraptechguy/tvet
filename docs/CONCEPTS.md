@@ -1,4 +1,4 @@
-# Documentation
+# Concepts
 
 + Here you can learn about how different segments of <a href="https://github.com/scraptechguy/twet">twet</a> work! 
 
