@@ -41,11 +41,19 @@
   <img width="300" alt="image" src="https://user-images.githubusercontent.com/75474651/178101946-bd99bafb-f2fb-4b4f-bf65-a41fe574ae0f.png">
 </div>
 
-Each line segment has a beginning and an end. Each of those beginnings and ends have their x and y coordinates. 
+Each line segment has a beginning and an end. Each of those beginnings and ends have their own x and y coordinates. Those shell be our input. 
+
+```
+a = [1, 3]
+b = [4, 4]
+c = [3, 5]
+d = [3.5, 2]
+```
+
 
 ### Code structure with snippets of code
 
-+ Yep, we'll be needing that first
++ Yep, we'll be needing that for plotting
 
 ```py
 import matplotlib.pyplot as plt
