@@ -1,4 +1,4 @@
-# Concepts
+# Key concepts
 
 + Here you can learn about how different segments of <a href="https://github.com/scraptechguy/twet">twet</a> work! 
 
@@ -17,7 +17,7 @@
 ```
 
 <div align="right">
-  <a href="https://github.com/scraptechguy/twet/blob/main/docs/DOCUMENTATION.md#documentation">^</a>
+  <a href="https://github.com/scraptechguy/twet/blob/main/docs/DOCUMENTATION.md#key-concepts">^</a>
 </div>
 
 
@@ -29,7 +29,7 @@
 ```
 
 <div align="right">
-  <a href="https://github.com/scraptechguy/twet/blob/main/docs/DOCUMENTATION.md#documentation">^</a>
+  <a href="https://github.com/scraptechguy/twet/blob/main/docs/DOCUMENTATION.md#key-concepts">^</a>
 </div>
 
 
@@ -87,5 +87,5 @@ def main():
 It's simple as that! Try running the whole thing over here: <a href="https://github.com/scraptechguy/twet/blob/main/docs/segments/line_segment_intersection_2D.py">line_segment_intersection_2D.py</a>
 
 <div align="right">
-  <a href="https://github.com/scraptechguy/twet/blob/main/docs/DOCUMENTATION.md#documentation">^</a>
+  <a href="https://github.com/scraptechguy/twet/blob/main/docs/DOCUMENTATION.md#key-concepts">^</a>
 </div>
