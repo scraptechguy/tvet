@@ -77,3 +77,7 @@ def main():
 ```
 
 It's simple as that! Try running the whole thing over here: <a href="https://github.com/scraptechguy/twet/blob/main/docs/segments/line_segment_intersection_2D.py">line_segment_intersection_2D.py</a>
+
+<div align="right">
+  <a href="https://github.com/scraptechguy/twet/blob/main/docs/DOCUMENTATION.md#documentation">^</a>
+</div>
