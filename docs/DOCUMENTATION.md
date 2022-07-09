@@ -16,6 +16,10 @@
 ```
 ```
 
+<div align="right">
+  <a href="https://github.com/scraptechguy/twet/blob/main/docs/DOCUMENTATION.md#documentation">^</a>
+</div>
+
 
 ## Saving .ele, .node and .obj
 
@@ -24,10 +28,14 @@
 ```
 ```
 
+<div align="right">
+  <a href="https://github.com/scraptechguy/twet/blob/main/docs/DOCUMENTATION.md#documentation">^</a>
+</div>
+
 
 ## Line segment intersection in 2D
 
-Line segment intersection is one of the most basic concepts one needs to understand to get to the bottom of twet. As seen on the image below, two line segments are minding their own business on a plane. Our goal is to determine whether those two intersect.
+<a href="https://en.wikipedia.org/wiki/Line_segment">Line segment</a> intersection is one of the most basic concepts one needs to understand to get to the bottom of twet. As seen on the image below, two line segments are minding their own business on a plane. Our goal is to determine whether those two intersect.
 
 <div align="center">
   <img width="300" alt="image" src="https://user-images.githubusercontent.com/75474651/178101946-bd99bafb-f2fb-4b4f-bf65-a41fe574ae0f.png">
