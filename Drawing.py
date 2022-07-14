@@ -4,6 +4,8 @@ import Loading
 import matplotlib.pyplot as plt
 
 def draw_obj(node, face):
+    '''Display a Wavefront OBJ file.''' 
+    
     fig = plt.figure()
     ax = fig.add_subplot(111)
 
