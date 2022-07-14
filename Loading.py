@@ -21,14 +21,15 @@ def load_obj(filename):
         elif l[0] == 'f':
             face.append(list(map(int, l[1:])))
 
-    return node, face
-
-def main():
-    node, face = load_obj("/Users/rostislavbroz/Downloads/Taky_nevim/tri_file_octdecv_1.obj")
+    f.close()
 
     print("number of nodes = " + str(len(node)) + ", beginning with node " + str(node[0]))
     print("number of faces = " + str(len(face)) + ", beginning with face " + str(face[0]))
 
+    return node, face
+
+def main():
+    node, face = load_obj("/Users/rostislavbroz/Downloads/Taky_nevim/tri_file_octdecv_1.obj")
 
 if __name__ == "__main__": 
     main()
