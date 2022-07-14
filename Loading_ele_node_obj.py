@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 def load_obj(filename):
     '''Load a Wavefront OBJ file.''' 
     
