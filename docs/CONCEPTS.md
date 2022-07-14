@@ -1,6 +1,6 @@
 # Key concepts
 
-+ Here you can learn about how different segments of <a href="https://github.com/scraptechguy/twet">twet</a> work! 
++ Here you can learn about different concepts <a href="https://github.com/scraptechguy/twet">twet</a> is built on! 
 
 ### Table of contents
 
