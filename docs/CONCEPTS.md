@@ -4,14 +4,14 @@
 
 ### Table of contents
 
-+ <a href="https://github.com/scraptechguy/twet/blob/main/docs/CONCEPTS.md#loading-ele-node-and-obj">Loading .ele, .node and .obj</a>
++ <a href="https://github.com/scraptechguy/twet/blob/main/docs/CONCEPTS.md#loading-ele-node-face-and-obj">Loading .ele, .node, .face and .obj</a>
 + <a href="https://github.com/scraptechguy/twet/blob/main/docs/CONCEPTS.md#saving-ele-node-and-obj">Saving .ele, .node and .obj</a>
 + <a href="https://github.com/scraptechguy/twet/blob/main/docs/CONCEPTS.md#line-segment-intersection-in-2d">Line segment intersection in 2D</a>
 
 
-## Loading .ele, .node and .obj
+## Loading .ele, .node, .face and .obj
 
-Our goal here is to create a library that can be used to load `.ele`, `.node` and `.obj` files.
+Our goal here is to create a library that can be used to load `.ele`, `.node`, `.face` and `.obj` files.
 
 ### .ele
 
@@ -23,6 +23,13 @@ An `.ele` file is a text file that contains the element connectivity information
 ### .node
 
 An `.node` file is a text file that contains the node information.
+
+```
+```
+
+### .face
+
+An `.face` file is a text file that contains the face information.
 
 ```
 ```
