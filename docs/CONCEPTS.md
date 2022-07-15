@@ -66,10 +66,10 @@ The three numbers after the `v` are the x, y and z coordinates of the vertex. Th
 
 Our goal here is process the `.obj` file and create a list of vertices and a list of faces.
 
-+ Let's begin by defining a function that takes filepath as an argument and returns a list of nodes and a list of faces. The `print_info` argument prints out a simple info about the lists if set to true (it's like that by default).
++ Let's begin by defining a function that takes filepath as an argument and returns a list of nodes and a list of faces. The `debug` argument prints out a simple info about the lists if set to true (it's not like that by default).
 
 ```py
-def load_obj(filename, print_info=True):
+def load_obj(filename, debug=False):
     '''Load a Wavefront OBJ file.''' 
     
     node = []
@@ -101,12 +101,12 @@ def load_obj(filename, print_info=True):
             face.append(list(map(int, l[1:])))
 ```
 
-+ Let's close the file as soon as possible and if not said otherwise, print out some info about our lists. 
++ Let's close the file as soon as possible and if requested, print out some info about our lists. 
 
 ```py
     f.close()
 
-    if print_info:
+    if debug:
         print("number of nodes = " + str(len(node)) + ", beginning with node " + str(node[0]))
         print("number of faces = " + str(len(face)) + ", beginning with face " + str(face[0]))
 ```
