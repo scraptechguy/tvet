@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
 
+def load_ele(filename, print_info=True): 
+    '''Load an ELE file.'''
+    
+    f = open(filename, "r")
+
+def load_node(filename, print_info=True): 
+    '''Load an NODE file.'''
+    
+    f = open(filename, "r")
+
 def load_obj(filename, print_info=True):
     '''Load a Wavefront OBJ file.''' 
     
@@ -28,6 +38,7 @@ def load_obj(filename, print_info=True):
         print("number of faces = " + str(len(face)) + ", beginning with face " + str(face[0]))
 
     return node, face
+
 
 def main():
     node, face = load_obj("/Users/rostislavbroz/Downloads/Taky_nevim/tri_file_octdecv_1.obj")

@@ -18,6 +18,7 @@ def draw_obj(node, face):
 
     plt.show()
 
+
 def main(): 
     node, face = Loading.load_obj("/Users/rostislavbroz/Downloads/Taky_nevim/tri_file_octdecv_1.obj")
 
