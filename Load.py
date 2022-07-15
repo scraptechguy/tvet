@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
 
-def load_ele(filename, print_info=True): 
+def load_ele(filename, debug=False): 
     '''Load an ELE file.'''
     
     f = open(filename, "r")
 
-def load_node(filename, print_info=True): 
+def load_node(filename, debug=False): 
     '''Load an NODE file.'''
     
     f = open(filename, "r")
 
-def load_face(filename, print_info=True): 
+def load_face(filename, debug=False): 
     '''Load an FACE file.'''
     
     f = open(filename, "r")
 
-def load_obj(filename, print_info=True):
+def load_obj(filename, debug=False):
     '''Load a Wavefront OBJ file.''' 
     
     node = []
@@ -38,7 +38,7 @@ def load_obj(filename, print_info=True):
 
     f.close()
 
-    if print_info:
+    if debug:
         print("number of nodes = " + str(len(node)) + ", beginning with node " + str(node[0]))
         print("number of faces = " + str(len(face)) + ", beginning with face " + str(face[0]))
 
