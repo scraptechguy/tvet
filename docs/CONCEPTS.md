@@ -11,10 +11,91 @@
 
 ## Loading .ele, .node and .obj
 
-+ bla bla 
+Our goal here is to create a library that can be used to load `.ele`, `.node` and `.obj` files.
+
+### .ele
+
+An `.ele` file is a text file that contains the element connectivity information.
 
 ```
 ```
+
+### .node
+
+An `.node` file is a text file that contains the node information.
+
+```
+```
+
+### .obj
+
+An `.obj` file is a file that contains the vertices of a 3D model. It looks something like this:
+
+```py
+v 0.0000 0.0000 57.6163
+v 14.6698 0.0000 59.8061
+v 0.0000 15.9201 58.6515
+f 1 2 3
+f 1 3 4
+f 1 4 5
+```
+
+The three numbers after the `v` are the x, y and z coordinates of the vertex. The three numbers after `f` are the indices of the vertices that make up the face.
+
+Our goal here is process the `.obj` file and create a list of vertices and a list of faces.
+
++ Let's begin by defining a function that takes filepath as an argument and returns a list of nodes and a list of faces. The `print_info` argument prints out a simple info about the lists if set to true (it's like that by default).
+
+```py
+def load_obj(filename, print_info=True):
+    '''Load a Wavefront OBJ file.''' 
+    
+    node = []
+    face = []
+```
+
++ Now we have to open the file and read the contents. 
+
+```py
+    f = open(filename, "r")
+```
+
++ To get all the important information, we got to loop through the file and differentiate between the different types of lines and append the conents to our lists accordingly. 
+
+```py
+    for line in f.readlines():
+        # Skip blank lines and comments
+          
+        if len(line) == 0:
+            continue
+        elif line[0] == '#': 
+            continue
+
+        l = line.split()
+        
+        if l[0] == 'v':
+            node.append(list(map(float, l[1:])))
+        elif l[0] == 'f':
+            face.append(list(map(int, l[1:])))
+```
+
++ Let's close the file as soon as possible and if not said otherwise, print out some info about our lists. 
+
+```py
+    f.close()
+
+    if print_info:
+        print("number of nodes = " + str(len(node)) + ", beginning with node " + str(node[0]))
+        print("number of faces = " + str(len(face)) + ", beginning with face " + str(face[0]))
+```
+
++ Now all that's left is to return the lists. 
+
+```py
+    return node, face
+```
+
+And we're done! Try running the whole thing over here: <a href="https://github.com/scraptechguy/twet/blob/main/docs/segments/load_obj.py">load_obj.py</a>
 
 <div align="right">
   <a href="https://github.com/scraptechguy/twet/blob/main/docs/CONCEPTS.md#key-concepts">^</a>
