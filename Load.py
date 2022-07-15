@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-def load_obj(filename):
+def load_obj(filename, print_info=True):
     '''Load a Wavefront OBJ file.''' 
     
     node = []
@@ -23,8 +23,9 @@ def load_obj(filename):
 
     f.close()
 
-    print("number of nodes = " + str(len(node)) + ", beginning with node " + str(node[0]))
-    print("number of faces = " + str(len(face)) + ", beginning with face " + str(face[0]))
+    if print_info:
+        print("number of nodes = " + str(len(node)) + ", beginning with node " + str(node[0]))
+        print("number of faces = " + str(len(face)) + ", beginning with face " + str(face[0]))
 
     return node, face
 
