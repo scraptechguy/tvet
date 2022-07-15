@@ -10,6 +10,11 @@ def load_node(filename, print_info=True):
     
     f = open(filename, "r")
 
+def load_face(filename, print_info=True): 
+    '''Load an FACE file.'''
+    
+    f = open(filename, "r")
+
 def load_obj(filename, print_info=True):
     '''Load a Wavefront OBJ file.''' 
     
