@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import matplotlib.pyplot as plt
 
 def intersect_AB_CD(a, b, c, d): 
