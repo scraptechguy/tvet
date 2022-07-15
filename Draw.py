@@ -11,10 +11,10 @@ def draw_obj(node, face):
 
     ax.set_aspect("equal") # TODO: add size increase
 
-    for i in range(len(face)):
-        l, m, n = map(lambda x: x - 1, face[i])
+    for l in range(len(face)):
+        i, j, k = face[l]
 
-        plt.plot([node[l][0], node[m][0], node[n][0], node[l][0]], [node[l][1], node[m][1], node[n][1], node[l][1]], '-')
+        plt.plot([node[i][0], node[j][0], node[k][0], node[i][0]], [node[i][1], node[j][1], node[k][1], node[i][1]], '-')
 
     plt.show()
 

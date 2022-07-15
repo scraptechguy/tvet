@@ -29,7 +29,7 @@ def load_obj(filename, print_info=True):
         if l[0] == 'v':
             node.append(list(map(float, l[1:])))
         elif l[0] == 'f':
-            face.append(list(map(int, l[1:])))
+            face.append(list(map(lambda x: int(x) - 1, l[1:])))
 
     f.close()
 
