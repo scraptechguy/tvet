@@ -15,23 +15,38 @@ Our goal here is to create a library that can be used to load `.ele`, `.node`, `
 
 ### .ele
 
-An `.ele` file is a text file that contains the element connectivity information.
+An `.ele` file is a text file that contains the element connectivity information. Here's an example:
 
-```
+```py
+50809  4  0
+    1    8801  8536  9111 10466
+    2    8167  9851 10065 10844
+    3    6285  7082  7646 10698
+    4    4268  3177  4617  7884
 ```
 
 ### .node
 
-An `.node` file is a text file that contains the node information.
+An `.node` file is a text file that contains the node information. This is how it looks like:
 
-```
+```py
+11218  3  0  0
+   1    0  0  57.616300000000003
+   2    14.6698  0  59.806100000000001
+   3    0  15.9201  58.651499999999999
+   4    -14.321099999999999  0  54.226700000000001
 ```
 
 ### .face
 
-An `.face` file is a text file that contains the face information.
+An `.face` file is a text file that contains the face information. Here's how one can look like:
 
-```
+```py
+12008  1
+    1   2707     6  4718    1
+    2   1662  2728  5495    1
+    3   1612  2705  5527    1
+    4   1603   407  5525    1
 ```
 
 ### .obj
