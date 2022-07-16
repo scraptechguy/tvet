@@ -5,7 +5,7 @@
 ### Table of contents
 
 + <a href="https://github.com/scraptechguy/twet/blob/main/docs/CONCEPTS.md#loading-ele-node-face-and-obj">Loading .ele, .node, .face and .obj</a>
-+ <a href="https://github.com/scraptechguy/twet/blob/main/docs/CONCEPTS.md#saving-ele-node-and-obj">Saving .ele, .node and .obj</a>
++ <a href="https://github.com/scraptechguy/twet/blob/main/docs/CONCEPTS.md#drawing-ele-node-face-and-obj">Drawing .ele, .node, .face and .obj</a>
 + <a href="https://github.com/scraptechguy/twet/blob/main/docs/CONCEPTS.md#line-segment-intersection-in-2d">Line segment intersection in 2D</a>
 
 
@@ -124,9 +124,26 @@ And we're done! Try running the whole thing over here: <a href="https://github.c
 </div>
 
 
-## Saving .ele, .node and .obj
+## Drawing .ele, .node, .face and .obj
 
-+ bla bla 
+Here we'll get to the bottom of modeling already loaded files.  
+
+### .ele
+
+```
+```
+
+### .node
+
+```
+```
+
+### .face
+
+```
+```
+
+### .obj
 
 ```
 ```
