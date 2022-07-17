@@ -31,7 +31,7 @@ def load_obj(filename, print_info=True):
 
 
 def main():
-    node, face = load_obj("/Users/rostislavbroz/Downloads/Taky_nevim/tri_file_octdecv_1.obj")
+    node, face = load_obj("tri_file_octdecv_1.obj")
 
 if __name__ == "__main__": 
     main()
