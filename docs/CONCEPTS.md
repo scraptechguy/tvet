@@ -1,12 +1,12 @@
 # Key concepts
 
-+ Here you can learn about different concepts <a href="https://github.com/scraptechguy/twet">twet</a> is built on! 
++ Here you can learn about different concepts <a href="https://github.com/scraptechguy/tvet">twet</a> is built on! 
 
 ### Table of contents
 
-+ <a href="https://github.com/scraptechguy/twet/blob/main/docs/CONCEPTS.md#loading-ele-node-face-and-obj">Loading .ele, .node, .face and .obj</a>
-+ <a href="https://github.com/scraptechguy/twet/blob/main/docs/CONCEPTS.md#drawing-ele-node-face-and-obj">Drawing .ele, .node, .face and .obj</a>
-+ <a href="https://github.com/scraptechguy/twet/blob/main/docs/CONCEPTS.md#line-segment-intersection-in-2d">Line segment intersection in 2D</a>
++ <a href="https://github.com/scraptechguy/tvet/blob/main/docs/CONCEPTS.md#loading-ele-node-face-and-obj">Loading .ele, .node, .face and .obj</a>
++ <a href="https://github.com/scraptechguy/tvet/blob/main/docs/CONCEPTS.md#drawing-ele-node-face-and-obj">Drawing .ele, .node, .face and .obj</a>
++ <a href="https://github.com/scraptechguy/tvet/blob/main/docs/CONCEPTS.md#line-segment-intersection-in-2d">Line segment intersection in 2D</a>
 
 
 ## Loading .ele, .node, .face and .obj
