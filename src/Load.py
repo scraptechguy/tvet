@@ -28,6 +28,8 @@ def load_face(filename, debug=False):
 
         face.append(l)
 
+    f.close()
+
     if debug:
        print("number of faces = " + str(len(face)) + ", beginning with face " + str(face[0]))
 
