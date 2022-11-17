@@ -10,13 +10,14 @@ def draw_obj(node, face):
 
     fig = plt.figure()
     ax = fig.add_subplot(111)
-
     ax.set_aspect("equal") # TODO: add size increase
+    ax = plt.axes(projection="3d")
+    ax.set_axis_off()
 
     for l in range(len(face)):
         i, j, k = face[l]
 
-        plt.plot([node[i][0], node[j][0], node[k][0], node[i][0]], [node[i][1], node[j][1], node[k][1], node[i][1]], '-')
+        plt.plot([node[i][0], node[j][0], node[k][0], node[i][0]], [node[i][1], node[j][1], node[k][1], node[i][1]], [node[i][2], node[j][2], node[k][2], node[i][2]], '-')
 
     plt.show()
 
