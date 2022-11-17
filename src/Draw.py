@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import Loading
+import Load
 import matplotlib.pyplot as plt
 
 def draw_obj(node, face):
@@ -20,7 +20,7 @@ def draw_obj(node, face):
 
 
 def main(): 
-    node, face = Loading.load_obj("/Users/rostislavbroz/Downloads/Taky_nevim/tri_file_octdecv_1.obj")
+    node, face = Load.load_obj("src/sample_files/tri_file_octdecv_1.obj")
 
     draw_obj(node, face)
 
