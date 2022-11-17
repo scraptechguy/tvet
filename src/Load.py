@@ -14,14 +14,15 @@ def load_ele(filename, debug=False):
             continue
 
         l = line.split()
-        l = l[1:]
 
-        ele.append(l)
+        ele.append(list(map(int, l[1:])))
 
     f.close
 
     if debug:
         print("number of elements = " + str(len(ele)) + ", beginning with element " + str(ele[0]))
+
+    return ele
 
 def load_node(filename, debug=False): 
     '''Load an NODE file.'''
@@ -37,14 +38,15 @@ def load_node(filename, debug=False):
             continue
 
         l = line.split()
-        l = l[1:]
 
-        node.append(l)
+        node.append(list(map(float, l[1:])))
 
     f.close()
 
     if debug:
         print("number of nodes = " + str(len(node)) + ", beginning with node " + str(node[0]))
+
+    return node
 
 def load_face(filename, debug=False): 
     '''Load an FACE file.'''
@@ -60,14 +62,15 @@ def load_face(filename, debug=False):
             continue
 
         l = line.split()
-        l = l[1:4]
 
-        face.append(l)
+        face.append(list(map(int, l[1:4])))
 
     f.close()
 
     if debug:
        print("number of faces = " + str(len(face)) + ", beginning with face " + str(face[0]))
+
+    return face
 
 def load_obj(filename, debug=False):
     '''Load a Wavefront OBJ file.''' 
@@ -100,9 +103,9 @@ def load_obj(filename, debug=False):
 
 
 def main():
-    # ele = load_ele("src/sample_files/tri_file_octdecv_1.1.ele", True)
-    # node = load_node("src/sample_files/tri_file_octdecv_1.1.node", True)
-    # face = load_face("src/sample_files/tri_file_octdecv_1.1.face", True)
+    ele = load_ele("src/sample_files/tri_file_octdecv_1.1.ele", True)
+    node = load_node("src/sample_files/tri_file_octdecv_1.1.node", True)
+    face = load_face("src/sample_files/tri_file_octdecv_1.1.face", True)
     obj_node, obj_face = load_obj("src/sample_files/tri_file_octdecv_1.obj", True)
 
 if __name__ == "__main__": 

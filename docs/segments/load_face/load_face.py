@@ -14,9 +14,8 @@ def load_face(filename, debug=False):
             continue
 
         l = line.split()
-        l = l[1:4]
 
-        face.append(l)
+        face.append(list(map(int, l[1:4])))
 
     f.close()
 

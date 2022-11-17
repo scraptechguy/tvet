@@ -14,9 +14,8 @@ def load_ele(filename, debug=False):
             continue
 
         l = line.split()
-        l = l[1:]
 
-        ele.append(l)
+        ele.append(list(map(int, l[1:])))
 
     f.close
 

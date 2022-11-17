@@ -14,9 +14,8 @@ def load_node(filename, debug=False):
             continue
 
         l = line.split()
-        l = l[1:]
 
-        node.append(l)
+        node.append(list(map(float, l[1:])))
 
     f.close()
 
