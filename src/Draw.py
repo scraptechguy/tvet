@@ -6,6 +6,8 @@ import matplotlib.pyplot as plt
 def draw_obj(node, face):
     '''Display a Wavefront OBJ file.''' 
     
+    plt.style.use('dark_background')
+
     fig = plt.figure()
     ax = fig.add_subplot(111)
 
