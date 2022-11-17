@@ -100,10 +100,10 @@ def load_obj(filename, debug=False):
 
 
 def main():
-    ele = load_ele("src/sample_files/tri_file_octdecv_1.1.ele", True)
+    # ele = load_ele("src/sample_files/tri_file_octdecv_1.1.ele", True)
     # node = load_node("src/sample_files/tri_file_octdecv_1.1.node", True)
     # face = load_face("src/sample_files/tri_file_octdecv_1.1.face", True)
-    # obj_node, obj_face = load_obj("src/sample_files/tri_file_octdecv_1.obj", True)
+    obj_node, obj_face = load_obj("src/sample_files/tri_file_octdecv_1.obj", True)
 
 if __name__ == "__main__": 
     main()
