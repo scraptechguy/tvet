@@ -3,7 +3,25 @@
 def load_ele(filename, debug=False): 
     '''Load an ELE file.'''
     
+    ele = []
+
     f = open(filename, "r")
+
+    for line in f.readlines()[1:]:
+        if len(line) == 0:
+            continue
+        elif line[0] == '#': 
+            continue
+
+        l = line.split()
+        l = l[1:]
+
+        ele.append(l)
+
+    f.close
+
+    if debug:
+        print("number of elements = " + str(len(ele)) + ", beginning with element " + str(ele[0]))
 
 def load_node(filename, debug=False): 
     '''Load an NODE file.'''
@@ -82,8 +100,8 @@ def load_obj(filename, debug=False):
 
 
 def main():
-    # ele = load_ele("src/sample_files/tri_file_octdecv_1.ele", True)
-    node = load_node("src/sample_files/tri_file_octdecv_1.1.node", True)
+    ele = load_ele("src/sample_files/tri_file_octdecv_1.1.ele", True)
+    # node = load_node("src/sample_files/tri_file_octdecv_1.1.node", True)
     # face = load_face("src/sample_files/tri_file_octdecv_1.1.face", True)
     # obj_node, obj_face = load_obj("src/sample_files/tri_file_octdecv_1.obj", True)
 
