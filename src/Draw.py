@@ -10,8 +10,8 @@ def draw_obj(node, face):
 
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    ax.set_aspect("equal") # TODO: add size increase
     ax = plt.axes(projection="3d")
+    ax.set_aspect("equal") # TODO: add size increase
     ax.set_axis_off()
 
     for l in range(len(face)):
