@@ -23,30 +23,32 @@ def main():
     T = 1/3 * (A + B + C)
     n = np.array((np.cross((B - C), (C - A)))/np.dot(abs(B - C), abs(C - A)))
 
+    # Trojúhelník
     vertices = np.array([A, B, C])
     faces = np.array(((0, 1, 2)))
     mesh = vispy.scene.visuals.Mesh(vertices=vertices, faces=faces, vertex_colors=vertices)
     mesh.transform = vispy.scene.transforms.MatrixTransform()
     view.add(mesh)
 
-    markers = vispy.scene.visuals.Markers(pos=vertices, face_color='gray')
-    view.add(markers)
+    # Vrcholy
+    vispy.scene.visuals.Markers(pos=vertices, face_color='gray')
 
-    normal = vispy.scene.visuals.Line(pos=np.array([T, n]), color='white')
-    normal_text = vispy.scene.visuals.Text(text="n", pos=T + (0.3, 0.3, 0.45), color='white', font_size=40)
-    view.add(normal)
-    view.add(normal_text)
+    # Normála a popisek
+    vispy.scene.visuals.Line(pos=np.array([T, n]), color='white')
+    vispy.scene.visuals.Text(text="n", pos=T + (0.3, 0.3, 0.45), color='white', font_size=40)
 
-    median1 = vispy.scene.visuals.Line(pos=np.array([A, a/2]), color='white')
-    median2 = vispy.scene.visuals.Line(pos=np.array([B, b/2]), color='white')
-    median3 = vispy.scene.visuals.Line(pos=np.array([C, c/2]), color='white')
-    view.add(median1)
-    view.add(median2)
-    view.add(median3)
+    # Těžnice
+    vispy.scene.visuals.Line(pos=np.array([A, a/2]), color='white')
+    vispy.scene.visuals.Line(pos=np.array([B, b/2]), color='white')
+    vispy.scene.visuals.Line(pos=np.array([C, c/2]), color='white')
 
+    # Názvy vrcholů
     for tmp, node in zip(("A","B","C"), vertices):
         text = vispy.scene.visuals.Text(text=tmp, pos=node + 0.03, color='white', font_size=40)
         view.add(text)
+
+    vispy.scene.visuals.Text("'q' to quit", anchor_x='left', anchor_y='bottom', pos=(20, 20), font_size=10,
+                        color='white', parent=canvas.scene)
 
     view.camera = vispy.scene.cameras.turntable.TurntableCamera(fov=30, elevation=0.0, azimuth=0.0)
 
