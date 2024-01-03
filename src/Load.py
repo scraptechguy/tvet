@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import numpy as np
+
 def load_ele(filename, debug=False): 
     '''Load an ELE file.'''
     
@@ -99,7 +101,7 @@ def load_obj(filename, debug=False):
         print("number of nodes = " + str(len(node)) + ", beginning with node " + str(node[0]))
         print("number of faces = " + str(len(face)) + ", beginning with face " + str(face[0]))
 
-    return node, face
+    return np.array(node), np.array(face)
 
 
 def main():
