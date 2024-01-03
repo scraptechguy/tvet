@@ -32,20 +32,20 @@ def main():
     markers = vispy.scene.visuals.Markers(pos=vertices, face_color='gray')
     view.add(markers)
 
-    normal = vispy.scene.visuals.Line(pos=np.array([T, n]), color='white')
-    normal_text = vispy.scene.visuals.Text(text="n", pos=T + (0.3, 0.3, 0.45), color='white', font_size=40)
+    normal = vispy.scene.visuals.Line(pos=np.array([T, n]), color='white', width=5)
+    normal_text = vispy.scene.visuals.Text(text="n", pos=T + (0.3, 0.3, 0.45), color='white', font_size=50)
     view.add(normal)
     view.add(normal_text)
 
-    median1 = vispy.scene.visuals.Line(pos=np.array([A, a/2]), color='white')
-    median2 = vispy.scene.visuals.Line(pos=np.array([B, b/2]), color='white')
-    median3 = vispy.scene.visuals.Line(pos=np.array([C, c/2]), color='white')
+    median1 = vispy.scene.visuals.Line(pos=np.array([A, a/2]), color='white', width=5)
+    median2 = vispy.scene.visuals.Line(pos=np.array([B, b/2]), color='white', width=5)
+    median3 = vispy.scene.visuals.Line(pos=np.array([C, c/2]), color='white', width=5)
     view.add(median1)
     view.add(median2)
     view.add(median3)
 
     for tmp, node in zip(("A","B","C"), vertices):
-        text = vispy.scene.visuals.Text(text=tmp, pos=node + 0.03, color='white', font_size=40)
+        text = vispy.scene.visuals.Text(text=tmp, pos=node + 0.03, color='white', font_size=50)
         view.add(text)
 
     view.camera = vispy.scene.cameras.turntable.TurntableCamera(fov=30, elevation=0.0, azimuth=0.0)
