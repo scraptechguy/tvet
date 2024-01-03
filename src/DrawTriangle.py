@@ -23,13 +23,13 @@ def main():
 
     markers = vispy.scene.visuals.Markers(pos=nodes, face_color='gray')
     view.add(markers)
-    line1 = vispy.scene.visuals.Line(pos=np.array([(0,0,1), (0.5,0.5,0)]), color='red')
+    line1 = vispy.scene.visuals.Line(pos=np.array([(0,0,1), (0.5,0.5,0)]), color='white')
     view.add(line1)
-    line2 = vispy.scene.visuals.Line(pos=np.array([(0,1,0), (0.5,0,0.5)]), color='red')
+    line2 = vispy.scene.visuals.Line(pos=np.array([(0,1,0), (0.5,0,0.5)]), color='white')
     view.add(line2)
-    line3 = vispy.scene.visuals.Line(pos=np.array([(1,0,0), (0,0.5,0.5)]), color='red')
+    line3 = vispy.scene.visuals.Line(pos=np.array([(1,0,0), (0,0.5,0.5)]), color='white')
     view.add(line3)
-    line4 = vispy.scene.visuals.Line(pos=np.array([(1/3,1/3,1/3), (0.66,0.66,0.66)]), color='red')
+    line4 = vispy.scene.visuals.Line(pos=np.array([(1/3,1/3,1/3), (0.66,0.66,0.66)]), color='white')
     view.add(line4)
 
     for tmp, node in zip(("A","B","C"), nodes):
