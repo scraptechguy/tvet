@@ -12,28 +12,40 @@ def main():
 
     view = canvas.central_widget.add_view()
 
-    A = (1, 0, 0)
-    B = (0, 1, 0)
-    C = (0, 0, 1)
-    nodes = np.array([A, B, C])
+    A = np.array((1, 0, 0))
+    B = np.array((0, 1, 0))
+    C = np.array((0, 0, 1))
+
+    a = np.array(abs((B - C)))
+    b = np.array(abs(C - A))
+    c = np.array(abs(A - B))
+
+    T = 1/3 * (A + B + C)
+    n = np.array((np.cross((B - C), (C - A)))/np.dot(abs(B - C), abs(C - A)))
+
+    vertices = np.array([A, B, C])
     faces = np.array(((0, 1, 2)))
-    mesh = vispy.scene.visuals.Mesh(vertices=nodes, faces=faces, vertex_colors=nodes)
+    mesh = vispy.scene.visuals.Mesh(vertices=vertices, faces=faces, vertex_colors=vertices)
     mesh.transform = vispy.scene.transforms.MatrixTransform()
     view.add(mesh)
 
-    markers = vispy.scene.visuals.Markers(pos=nodes, face_color='gray')
+    markers = vispy.scene.visuals.Markers(pos=vertices, face_color='gray')
     view.add(markers)
-    line1 = vispy.scene.visuals.Line(pos=np.array([(0,0,1), (0.5,0.5,0)]), color='white')
-    view.add(line1)
-    line2 = vispy.scene.visuals.Line(pos=np.array([(0,1,0), (0.5,0,0.5)]), color='white')
-    view.add(line2)
-    line3 = vispy.scene.visuals.Line(pos=np.array([(1,0,0), (0,0.5,0.5)]), color='white')
-    view.add(line3)
-    line4 = vispy.scene.visuals.Line(pos=np.array([(1/3,1/3,1/3), (0.66,0.66,0.66)]), color='white')
-    view.add(line4)
 
-    for tmp, node in zip(("A","B","C"), nodes):
-        text = vispy.scene.visuals.Text(text=tmp, pos=node+0.02, color='white', font_size=20)
+    normal = vispy.scene.visuals.Line(pos=np.array([T, n]), color='white')
+    normal_text = vispy.scene.visuals.Text(text="n", pos=T + (0.3, 0.3, 0.45), color='white', font_size=40)
+    view.add(normal)
+    view.add(normal_text)
+
+    median1 = vispy.scene.visuals.Line(pos=np.array([A, a/2]), color='white')
+    median2 = vispy.scene.visuals.Line(pos=np.array([B, b/2]), color='white')
+    median3 = vispy.scene.visuals.Line(pos=np.array([C, c/2]), color='white')
+    view.add(median1)
+    view.add(median2)
+    view.add(median3)
+
+    for tmp, node in zip(("A","B","C"), vertices):
+        text = vispy.scene.visuals.Text(text=tmp, pos=node + 0.03, color='white', font_size=40)
         view.add(text)
 
     view.camera = vispy.scene.cameras.turntable.TurntableCamera(fov=30, elevation=0.0, azimuth=0.0)
