@@ -31,16 +31,22 @@ def main():
     view.add(mesh)
 
     # Vrcholy
-    vispy.scene.visuals.Markers(pos=vertices, face_color='gray')
+    markers = vispy.scene.visuals.Markers(pos=vertices, face_color='gray')
+    view.add(markers)
 
     # Normála a popisek
-    vispy.scene.visuals.Line(pos=np.array([T, n]), color='white')
-    vispy.scene.visuals.Text(text="n", pos=T + (0.3, 0.3, 0.45), color='white', font_size=40)
+    normal = vispy.scene.visuals.Line(pos=np.array([T, n]), color='white')
+    normal_text = vispy.scene.visuals.Text(text="n", pos=T + (0.3, 0.3, 0.45), color='white', font_size=40)
+    view.add(normal)
+    view.add(normal_text)
 
     # Těžnice
-    vispy.scene.visuals.Line(pos=np.array([A, a/2]), color='white')
-    vispy.scene.visuals.Line(pos=np.array([B, b/2]), color='white')
-    vispy.scene.visuals.Line(pos=np.array([C, c/2]), color='white')
+    median1 = vispy.scene.visuals.Line(pos=np.array([A, a/2]), color='white')
+    median2 = vispy.scene.visuals.Line(pos=np.array([B, b/2]), color='white')
+    median3 = vispy.scene.visuals.Line(pos=np.array([C, c/2]), color='white')
+    view.add(median1)
+    view.add(median2)
+    view.add(median3)
 
     # Názvy vrcholů
     for tmp, node in zip(("A","B","C"), vertices):
