@@ -16,10 +16,12 @@ def main():
     B = np.array((0, 1, 0))
     C = np.array((0, 0, 1))
 
+    # Stredy stran
     a = np.array(abs((B - C)))
     b = np.array(abs(C - A))
     c = np.array(abs(A - B))
 
+    # Teziste a normala
     T = 1/3 * (A + B + C)
     n = np.array((np.cross((B - C), (C - A)))/np.dot(abs(B - C), abs(C - A)))
 
