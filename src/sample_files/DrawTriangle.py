@@ -23,7 +23,9 @@ def main():
 
     # Teziste a normala
     T = 1/3 * (A + B + C)
-    n = np.array((np.cross((B - C), (C - A)))/np.dot(abs(B - C), abs(C - A)))
+    a = B - C
+    b = C - A
+    n = np.array((np.cross(a, b))/(np.sqrt(np.dot(a, a) * np.dot(b, b))))
 
     # Trojúhelník
     vertices = np.array([A, B, C])
