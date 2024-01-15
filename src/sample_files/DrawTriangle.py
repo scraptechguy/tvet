@@ -23,9 +23,8 @@ def main():
 
     # Teziste a normala
     T = 1/3 * (A + B + C)
-    a = B - C
-    b = C - A
-    n = np.array((np.cross(a, b))/(np.sqrt(np.dot(a, a) * np.dot(b, b))))
+    n = np.cross(a, b)
+    n /= np.sqrt(np.dot(n, n))
 
     # Trojúhelník
     vertices = np.array([A, B, C])
@@ -39,7 +38,7 @@ def main():
     view.add(markers)
 
     # Normála a popisek
-    normal = vispy.scene.visuals.Line(pos=np.array([T, n]), color='white')
+    normal = vispy.scene.visuals.Line(pos=np.array([T, n + 0.3]), color='white')
     normal_text = vispy.scene.visuals.Text(text="n", pos=T + (0.3, 0.3, 0.45), color='white', font_size=40)
     view.add(normal)
     view.add(normal_text)
