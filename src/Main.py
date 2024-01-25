@@ -9,6 +9,8 @@ import vispy
 import vispy.app
 import vispy.scene
 import vispy.visuals
+import vispy.io
+import vispy.gloo
 
 import Load
 import Hapke
@@ -225,6 +227,9 @@ class Asteroid(object):
             if event.key in ['q', 'Q']:
                 vispy.app.quit()
 
+            elif event.key == 's':
+                vispy.io.write_png("vispy_screenshot.png", vispy.gloo.util._screenshot())
+
             elif event.key == '1':
                 plot_fluxes(phi=self.phi_i)
                 wireframe_filter.enabled = False
@@ -319,7 +324,7 @@ def main():
     elif check_filetype() == False:
         print("NEEDS TO BE AN .OBJ FILE")
         vispy.app.quit()
-        
+
     # filename = "src/sample_files/tri_file_octdecv_1.obj"
     asteroid = Asteroid(args=args, filename=filename)
     vispy.app.run()
