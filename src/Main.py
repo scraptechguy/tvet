@@ -133,7 +133,9 @@ class Asteroid(object):
         total[:, 0] = (total[:, 0] - np.min(total[:, 0])) / (np.max(total[:, 0]) - np.min(total[:, 0]))
         total[:, 1] = -(total[:, 1] - np.min(total[:, 1])) / (np.max(total[:, 1]) - np.min(total[:, 1]))
 
-        light_curve = vispy.scene.visuals.Line(pos=(total*200) + (20, 560), color='white', parent=self.canvas.scene)
+        light_curve = vispy.scene.visuals.Line(pos=(total*200) + (40, 560), color='white', parent=self.canvas.scene)
+        vispy.scene.visuals.Line(pos=((20, 570), (250, 570)), color='white', parent=self.canvas.scene)
+        vispy.scene.visuals.Line(pos=((30, 360), (30, 580)), color='white', parent=self.canvas.scene)
 
     def plot(self):
         self.canvas = vispy.scene.SceneCanvas(keys='interactive')
@@ -235,7 +237,6 @@ class Asteroid(object):
 
         @self.canvas.events.key_press.connect
         def on_key_press(event):
-
             if event.key in ['q', 'Q']:
                 vispy.app.quit()
 
