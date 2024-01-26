@@ -108,7 +108,9 @@ class Asteroid(object):
 
         self.total = np.sum(self.phi_e)
 
-    def light_curve(self, n=10):
+    def light_curve(self, n=100):
+        s = self.s
+        x, y, z = s
         total = []
 
         for i in range(n+1):
@@ -125,8 +127,9 @@ class Asteroid(object):
 
             self.get_cosines(s=s_)
             self.get_fluxes()
-            total.append(self.total)
+            total.append((gamma, self.total))
 
+        np.savetxt("light_curve.txt", total)
         print(total)
 
     def plot(self):
