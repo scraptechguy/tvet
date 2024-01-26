@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import argparse
+import fmodpy
 import tkinter
 import tkinter.filedialog
 import numpy as np
@@ -14,7 +15,9 @@ import vispy.gloo
 
 import Load
 import Hapke
-import Shadowing
+# import Shadowing
+
+Shadowing = fmodpy.fimport("src/Shadowing/shadowing.f90")
 
 def f_lambert(f_L, mu_i, mu_e, alpha):
     return f_L
@@ -82,9 +85,12 @@ class Asteroid(object):
         self.mu_i = np.where(self.mu_i > 0.0, self.mu_i, 0.0)
         self.mu_e = np.where(self.mu_e > 0.0, self.mu_e, 0.0)
 
-        nu_i, nu_e = Shadowing.non(self.mu_i, self.mu_e)
-        self.nu_i = Shadowing.nu(self.faces, self.vertices, self.normals, self.centers, self.s, nu_i)
-        self.nu_e = Shadowing.nu(self.faces, self.vertices, self.normals, self.centers, self.o, nu_e)
+        self.nu_i = np.zeros((len(self.faces)), order='F')
+        self.nu_e = np.zeros((len(self.faces)), order='F')
+
+        Shadowing.shadowing_module.non(self.mu_i, self.mu_e, self.nu_i, self.nu_e)
+        Shadowing.shadowing_module.nu(self.faces, self.vertices, self.normals, self.centers, self.s, self.nu_i)
+        Shadowing.shadowing_module.nu(self.faces, self.vertices, self.normals, self.centers, self.o, self.nu_e)
 
     def get_fluxes(self):
         phi_s = 1361. # W/m^2
@@ -154,7 +160,7 @@ class Asteroid(object):
                             color='white', parent=self.canvas.scene)
         vispy.scene.visuals.Text("'4' to show normals", anchor_x='left', pos=(20, 80), font_size=10,
                             color='white', parent=self.canvas.scene)
-        vispy.scene.visuals.Text("'5' to show fully lit model", anchor_x='left', pos=(20, 100), font_size=10,
+        vispy.scene.visuals.Text("'5' to show flat model", anchor_x='left', pos=(20, 100), font_size=10,
                             color='white', parent=self.canvas.scene)
         vispy.scene.visuals.Text("'6' to show smooth model", anchor_x='left', pos=(20, 120), font_size=10,
                             color='white', parent=self.canvas.scene)
@@ -258,7 +264,7 @@ class Asteroid(object):
                 mesh.update()
 
             elif event.key == '5':
-                shading_filter.shading = 'smooth'
+                shading_filter.shading = 'flat'
                 wireframe_filter.enabled = False
                 normals.visible = False
                 face_colors = []
