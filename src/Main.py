@@ -85,12 +85,12 @@ class Asteroid(object):
         self.mu_i = np.where(self.mu_i > 0.0, self.mu_i, 0.0)
         self.mu_e = np.where(self.mu_e > 0.0, self.mu_e, 0.0)
 
-        self.nu_i = np.zeros((len(self.faces)), order='F')
-        self.nu_e = np.zeros((len(self.faces)), order='F')
+        self.nu_i = np.zeros((len(self.faces)))
+        self.nu_e = np.zeros((len(self.faces)))
 
         Shadowing.shadowing_module.non(self.mu_i, self.mu_e, self.nu_i, self.nu_e)
-        Shadowing.shadowing_module.nu(self.faces, self.vertices, self.normals, self.centers, self.s, self.nu_i)
-        Shadowing.shadowing_module.nu(self.faces, self.vertices, self.normals, self.centers, self.o, self.nu_e)
+        Shadowing.shadowing_module.nu(self.faces + 1, self.vertices, self.normals, self.centers, self.s, self.nu_i)
+        Shadowing.shadowing_module.nu(self.faces + 1, self.vertices, self.normals, self.centers, self.o, self.nu_e)
 
     def get_fluxes(self):
         phi_s = 1361. # W/m^2
@@ -114,10 +114,8 @@ class Asteroid(object):
         total = []
 
         for i in range(n+1):
-            s = self.s
-            x, y, z = s
             gamma = 0 + 2.0*np.pi * i/n
-            print("gamma = ", gamma/np.pi*180.0, " deg")
+            # print("gamma = ", gamma/np.pi*180.0, " deg")
 
             x_ = x * np.cos(gamma) + y * np.sin(gamma)
             y_ = -x * np.sin(gamma) + y * np.cos(gamma)
@@ -129,8 +127,13 @@ class Asteroid(object):
             self.get_fluxes()
             total.append((gamma, self.total))
 
+        total = np.array(total)
         np.savetxt("light_curve.txt", total)
-        print(total)
+
+        total[:, 0] = (total[:, 0] - np.min(total[:, 0])) / (np.max(total[:, 0]) - np.min(total[:, 0]))
+        total[:, 1] = -(total[:, 1] - np.min(total[:, 1])) / (np.max(total[:, 1]) - np.min(total[:, 1]))
+
+        light_curve = vispy.scene.visuals.Line(pos=(total*200) + (20, 560), color='white', parent=self.canvas.scene)
 
     def plot(self):
         self.canvas = vispy.scene.SceneCanvas(keys='interactive')
