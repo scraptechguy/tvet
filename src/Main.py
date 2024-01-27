@@ -181,7 +181,7 @@ class Asteroid(object):
                             color='white', parent=self.canvas.scene)
         vispy.scene.visuals.Text("'l' to create a light curve", anchor_x='left', pos=(20, 220), font_size=10,
                             color='white', parent=self.canvas.scene)
-        vispy.scene.visuals.Text("'o' to show axis", anchor_x='left', pos=(20, 240), font_size=10,
+        vispy.scene.visuals.Text("'s' to screenshot", anchor_x='left', pos=(20, 240), font_size=10,
                             color='white', parent=self.canvas.scene)
         vispy.scene.visuals.Text("'q' to quit", anchor_x='left', pos=(20, 260), font_size=10,
                             color='white', parent=self.canvas.scene)
