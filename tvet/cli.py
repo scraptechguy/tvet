@@ -2,29 +2,21 @@
 # -*- coding: utf-8 -*-
 
 import argparse
-from PyQt6.QtWidgets import QApplication, QFileDialog
-import vispy.app
-
 from .core import Asteroid
-from .io import check_filetype
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--shininess', default=100)
-    parser.add_argument('--wireframe-width', default=1)
-    args, _ = parser.parse_known_args()
+    parser = argparse.ArgumentParser(description="TVET CLI")
+    parser.add_argument("filename", help="Path to OBJ file")
+    parser.add_argument('--shininess', default=100, help="Shininess factor for the asteroid surface")
+    parser.add_argument('--wireframe-width', default=1, help="Width of the wireframe lines")
+    parser.add_argument("--get-cosines", action="store_true", help="Run get_cosines() and print results")
+    args = parser.parse_args()
 
-    app = QApplication([])  
-    filename, _ = QFileDialog.getOpenFileName(
-        None,
-        "Select an OBJ file",
-        "",                # start directory
-        "OBJ Files (*.obj)"
-    )
-
-    # filename = "src/sample_files/tri_file_octdecv_1.obj"
-    asteroid = Asteroid(args=args, filename=filename)
-    vispy.app.run()
+    asteroid = Asteroid(args=args, filename=args.filename)
+    if args.get_cosines:
+        asteroid.get_cosines()
+        print("mu_i:", asteroid.mu_i)
+        print("mu_e:", asteroid.mu_e)
 
 if __name__ == "__main__":
     main()
