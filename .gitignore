@@ -205,3 +205,10 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# CLI output files
+centers.txt
+normals.txt
+phi_i.txt
+phi_e.txt
+geometry_output.txt
