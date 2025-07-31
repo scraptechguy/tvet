@@ -1,8 +1,11 @@
-## Resources
+## Python package for visualization of asteroids and their light curves
 
-+ <b><a href="">src</a></b> (code itself)
-+ <b><a href="https://github.com/scraptechguy/tvet/blob/main/docs/CONCEPTS.md">Key concepts</a></b> (explains all key concepts used in tvet)
-+ <b><a href="https://sirrah.troja.mff.cuni.cz/~mira/tmp/diplomky/Broz_2024.pdf">Dokumentace v češtině</a></b> 
+## Instructions to run
+
+```
+brew install gcc
+```
+> GCC, which includes gfortran, is required for the package to run
 
 ## Project structure
 
@@ -25,3 +28,9 @@ tvet/           ← root of your repo
 ├── setup.cfg              ← optional metadata
 └── MANIFEST.in            ← include meshes, data files, FORTRAN sources
 ```
+
+## Resources
+
++ <b><a href="">src</a></b> (code itself)
++ <b><a href="https://github.com/scraptechguy/tvet/blob/main/docs/CONCEPTS.md">Key concepts</a></b> (explains all key concepts used in tvet)
++ <b><a href="https://sirrah.troja.mff.cuni.cz/~mira/tmp/diplomky/Broz_2024.pdf">Dokumentace v češtině</a></b> 
