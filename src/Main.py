@@ -12,6 +12,7 @@ import vispy.scene
 import vispy.visuals
 import vispy.io
 import vispy.gloo
+from PyQt6.QtWidgets import QApplication, QFileDialog
 
 import Load
 import Hapke
@@ -88,9 +89,26 @@ class Asteroid(object):
         self.nu_i = np.zeros((len(self.faces)))
         self.nu_e = np.zeros((len(self.faces)))
 
-        Shadowing.shadowing_module.non(self.mu_i, self.mu_e, self.nu_i, self.nu_e)
-        Shadowing.shadowing_module.nu(self.faces + 1, self.vertices, self.normals, self.centers, self.s, self.nu_i)
-        Shadowing.shadowing_module.nu(self.faces + 1, self.vertices, self.normals, self.centers, self.o, self.nu_e)
+        # Create Fortran-contiguous arrays of the exact ctypes-compatible dtype
+        mu_i_F     = np.asfortranarray(self.mu_i,   dtype=np.double)
+        mu_e_F     = np.asfortranarray(self.mu_e,   dtype=np.double)
+        nu_i_F     = np.asfortranarray(self.nu_i,   dtype=np.double)
+        nu_e_F     = np.asfortranarray(self.nu_e,   dtype=np.double)
+        faces_F    = np.asfortranarray(self.faces + 1, dtype=np.intc)
+        vertices_F = np.asfortranarray(self.vertices,  dtype=np.double)
+        normals_F  = np.asfortranarray(self.normals,   dtype=np.double)
+        centers_F  = np.asfortranarray(self.centers,   dtype=np.double)
+        s_F        = np.asfortranarray(self.s,         dtype=np.double)
+        o_F        = np.asfortranarray(self.o,         dtype=np.double)
+
+        # 2) Call fmodpy subroutines **without** triggering hidden copies
+        Shadowing.shadowing_module.non(mu_i_F, mu_e_F, nu_i_F, nu_e_F)
+        Shadowing.shadowing_module.nu(faces_F, vertices_F, normals_F, centers_F, s_F, nu_i_F)
+        Shadowing.shadowing_module.nu(faces_F, vertices_F, normals_F, centers_F, o_F, nu_e_F)
+
+        # 3) If you need your original C-contiguous arrays back:
+        self.nu_i = np.array(nu_i_F, order='C')
+        self.nu_e = np.array(nu_e_F, order='C')
 
     def get_fluxes(self):
         phi_s = 1361. # W/m^2
@@ -319,9 +337,16 @@ def main():
     parser.add_argument('--wireframe-width', default=1)
     args, _ = parser.parse_known_args()
 
-    root = tkinter.Tk()
-    root.withdraw()
-    filename = tkinter.filedialog.askopenfilename()
+    app = QApplication([])  
+    filename, _ = QFileDialog.getOpenFileName(
+        None,
+        "Select an OBJ file",
+        "",                # start directory
+        "OBJ Files (*.obj)"
+    )
+    if not filename:
+        print("No file selected, exiting.")
+
 
     def check_filetype():
         for index, character in enumerate(filename):

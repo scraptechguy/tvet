@@ -4,7 +4,7 @@ hsluv==5.0.4
 kiwisolver==1.4.8
 numpy==2.3.2
 packaging==25.0
-PyQt5==5.15.11
-PyQt5-Qt5==5.15.17
-PyQt5_sip==12.17.0
+PyQt6==6.9.1
+PyQt6-Qt6==6.9.1
+PyQt6_sip==13.10.2
 vispy==0.15.2
