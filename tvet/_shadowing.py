@@ -4,23 +4,21 @@ import os
 import fmodpy
 
 _this_dir = os.path.dirname(__file__)
-_src_dir  = os.path.join(_this_dir, "Shadowing_fortran90")
+_src_dir  = os.path.join(_this_dir, "fortran")
 
 # build absolute paths to all of your .f90 files
-all_sources = [os.path.join(_src_dir, fn) for fn in (
-    "shadowing.f90",
-    "vector_product.f90",
-    "normalize.f90",
-    "boundingbox.f90",
-    "intersect_AB_t.f90",
-    "shadowing_c_wrapper.f90",
-)]
+main_source = os.path.join(_src_dir, "shadowing.f90")
+dependencies = [
+    os.path.join(_src_dir, "vector_product.f90"),
+    os.path.join(_src_dir, "normalize.f90"),
+    os.path.join(_src_dir, "boundingbox.f90"),
+    os.path.join(_src_dir, "intersect_AB_t.f90"),
+]
 
-# tell fmodpy to compile them all in one shot.
-# the first path is the “main” file; the rest become dependencies.
 Shadowing = fmodpy.fimport(
-    all_sources[0],
-    dependencies=all_sources[1:],
-    verbose=True,               # optional, to see the exact gfortran command
-    f_compiler_args="-fPIC -shared -O3",  # optional flags if you need them
+    main_source,
+    dependencies=dependencies,
+    verbose=True,
+    f_compiler_args="-fPIC -shared -O3",
+    output_dir=_src_dir,
 )
