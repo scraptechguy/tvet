@@ -1,5 +1,26 @@
+# tvet/_shadowing.py
+
+import os
 import fmodpy
 
-# adapt the path if your Fortran sources move—
-# this will build the shadowing module on install
-Shadowing = fmodpy.fimport("tvet/Shadowing_fortran90/shadowing.f90")
+_this_dir = os.path.dirname(__file__)
+_src_dir  = os.path.join(_this_dir, "Shadowing_fortran90")
+
+# build absolute paths to all of your .f90 files
+all_sources = [os.path.join(_src_dir, fn) for fn in (
+    "shadowing.f90",
+    "vector_product.f90",
+    "normalize.f90",
+    "boundingbox.f90",
+    "intersect_AB_t.f90",
+    "shadowing_c_wrapper.f90",
+)]
+
+# tell fmodpy to compile them all in one shot.
+# the first path is the “main” file; the rest become dependencies.
+Shadowing = fmodpy.fimport(
+    all_sources[0],
+    dependencies=all_sources[1:],
+    verbose=True,               # optional, to see the exact gfortran command
+    f_compiler_args="-fPIC -shared -O3",  # optional flags if you need them
+)
