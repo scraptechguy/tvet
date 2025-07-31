@@ -21,7 +21,7 @@ _shared_object_name = "shadowing." + platform.machine() + ".so"
 _this_directory = os.path.dirname(os.path.abspath(__file__))
 _path_to_lib = os.path.join(_this_directory, _shared_object_name)
 _compile_options = ['-fPIC', '-shared', '-O3']
-_ordered_dependencies = ['shadowing.f90', 'vector_product.f90', 'boundingbox.f90', 'normalize.f90', 'intersect_AB_t.f90', 'shadowing_c_wrapper.f90']
+_ordered_dependencies = ['shadowing.f90', 'vector_product.f90', 'normalize.f90', 'boundingbox.f90', 'intersect_AB_t.f90', 'shadowing_c_wrapper.f90']
 _symbol_files = []# 
 # --------------------------------------------------------------------
 #               AUTO-COMPILING
