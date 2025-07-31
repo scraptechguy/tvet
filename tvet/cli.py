@@ -3,6 +3,7 @@
 
 import argparse
 import numpy as np
+import os
 from .core import Asteroid
 
 def main():
@@ -16,28 +17,29 @@ def main():
     args = parser.parse_args()
 
     asteroid = Asteroid(args=args, filename=args.filename)
+    output_dir = "output"
+    os.makedirs(output_dir, exist_ok=True)
+
     if args.get_geometry:
         asteroid.get_geometry()
-        np.savetxt("centers.txt", asteroid.centers)
-        np.savetxt("normals.txt", asteroid.normals)
-        print("Centers:\n", asteroid.centers)
-        print("SAVED CENTERS TO centers.txt\n")
-        print("Normals:\n", asteroid.normals)
-        print("SAVED NORMALS TO normals.txt\n")
+        np.savetxt(os.path.join(output_dir, "centers.txt"), asteroid.centers)
+        np.savetxt(os.path.join(output_dir, "normals.txt"), asteroid.normals)
+        print(f"Centers saved to {output_dir}/centers.txt")
+        print(f"Normals saved to {output_dir}/normals.txt")
         print("Number of centers:", len(asteroid.centers))
         print("Number of normals:", len(asteroid.normals))
+
     if args.get_cosines:
         asteroid.get_cosines()
         print("mu_i:", asteroid.mu_i)
         print("mu_e:", asteroid.mu_e)
+        
     if args.get_fluxes:
         asteroid.get_fluxes()
-        np.savetxt("phi_i.txt", asteroid.phi_i)
-        np.savetxt("phi_e.txt", asteroid.phi_e)
-        print("phi_i:\n", asteroid.phi_i)
-        print("SAVED phi_i TO phi_i.txt\n")
-        print("phi_e:\n", asteroid.phi_e)
-        print("SAVED phi_e TO phi_e.txt\n")
+        np.savetxt(os.path.join(output_dir, "phi_i.txt"), asteroid.phi_i)
+        np.savetxt(os.path.join(output_dir, "phi_e.txt"), asteroid.phi_e)
+        print(f"phi_i saved to {output_dir}/phi_i.txt")
+        print(f"phi_e saved to {output_dir}/phi_e.txt")
         print("Total:", asteroid.total)
 
 if __name__ == "__main__":
