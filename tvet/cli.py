@@ -4,7 +4,9 @@
 import argparse
 import numpy as np
 import os
+import vispy.app
 from .core import Asteroid
+from PyQt6.QtWidgets import QApplication, QFileDialog
 
 def main():
     parser = argparse.ArgumentParser(description="TVET CLI")
@@ -14,6 +16,7 @@ def main():
     parser.add_argument("--get-geometry", action="store_true", help="Run get_geometry() and print results")
     parser.add_argument("--get-cosines", action="store_true", help="Run get_cosines() and print results")
     parser.add_argument("--get-fluxes", action="store_true", help="Run get_fluxes() and print results")
+    parser.add_argument("--plot", action="store_true", help="Plot the asteroid geometry and light curve")
     args = parser.parse_args()
 
     asteroid = Asteroid(args=args, filename=args.filename)
@@ -41,6 +44,9 @@ def main():
         print(f"phi_i saved to {output_dir}/phi_i.txt")
         print(f"phi_e saved to {output_dir}/phi_e.txt")
         print("Total:", asteroid.total)
+
+    if args.plot:
+        vispy.app.run()
 
 if __name__ == "__main__":
     main()
