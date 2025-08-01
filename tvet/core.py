@@ -145,6 +145,10 @@ class Asteroid(object):
         vispy.scene.visuals.Line(pos=((30, 360), (30, 580)), color='white', parent=self.canvas.scene)
 
     def plot(self):
+        # Provide defaults if args is None
+        shininess = self.args.shininess if self.args and hasattr(self.args, "shininess") else 100
+        wireframe_width = self.args.wireframe_width if self.args and hasattr(self.args, "wireframe_width") else 1
+
         self.canvas = vispy.scene.SceneCanvas(keys='interactive')
         self.canvas.size = 1920, 1080
         self.view = self.canvas.central_widget.add_view()
@@ -202,25 +206,25 @@ class Asteroid(object):
         
         vispy.scene.visuals.XYZAxis(parent=self.view.scene)
 
-        shading_filter = vispy.visuals.filters.ShadingFilter(\
-            shading= 'smooth',
-            shininess=self.args.shininess,\
-            ambient_coefficient = 0.0,\
-            diffuse_coefficient = 1.0,\
-            specular_coefficient = 0.0,\
-            ambient_light = 'white',\
-            diffuse_light = 'white',\
-            specular_light = 'white',\
-            )
+        shading_filter = vispy.visuals.filters.ShadingFilter(
+            shading='smooth',
+            shininess=shininess,
+            ambient_coefficient=0.0,
+            diffuse_coefficient=1.0,
+            specular_coefficient=0.0,
+            ambient_light='white',
+            diffuse_light='white',
+            specular_light='white',
+        )
         mesh.attach(shading_filter)
 
-        wireframe_filter = vispy.visuals.filters.WireframeFilter(\
-            width=self.args.wireframe_width,\
-            color='green',\
-            wireframe_only = False,\
-            faces_only = True,\
-            enabled= False,\
-            )
+        wireframe_filter = vispy.visuals.filters.WireframeFilter(
+            width=wireframe_width,
+            color='green',
+            wireframe_only=False,
+            faces_only=True,
+            enabled=False,
+        )
         mesh.attach(wireframe_filter)
 
         self.view.camera = vispy.scene.cameras.TurntableCamera(center=(0, 0, 0))
