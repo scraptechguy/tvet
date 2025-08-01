@@ -17,7 +17,19 @@ class Asteroid(object):
         self.vertices, self.faces = load_obj(self.filename)
         self.size = np.max(self.vertices) - np.min(self.vertices)
         self.vertices *= 1.9 / self.size
-        self.f_func = scattering.f_lambert
+
+        # Select scattering function based on CLI argument
+        if self.args and hasattr(self.args, "scattering"):
+            if self.args.scattering == "lambert":
+                self.f_func = scattering.f_lambert
+            elif self.args.scattering == "lommel":
+                self.f_func = scattering.f_lommel
+            elif self.args.scattering == "hapke":
+                self.f_func = scattering.f_hapke
+            else:
+                self.f_func = scattering.f_lambert
+        else:
+            self.f_func = scattering.f_lambert
 
         self.get_geometry()
         self.get_cosines()

@@ -1,6 +1,10 @@
 from math import pi, sqrt, sin, cos, tan, log, exp, acos
 
 deg = pi/180.0
+B0 = 1.32
+minh = 0.20
+ming = -0.35
+bartheta = 10.0 * deg
 
 def f_lambert(f_L, mu_i, mu_e, alpha):
     return f_L
@@ -54,6 +58,7 @@ def f_hapke(f_L, mu_i, mu_e, alpha):
     """
     global B, P, tanbartheta
     global mu_i_, mu_e_
+    init_hapke(alpha)  # Ensure all globals are initialized
 
     if mu_i > 0.0 and mu_e > 0.0:
         A_w = 4.0*pi*f_L

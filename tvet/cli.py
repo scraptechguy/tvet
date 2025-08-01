@@ -17,6 +17,7 @@ def main():
     parser.add_argument("--get-cosines", action="store_true", help="Run get_cosines() and print results")
     parser.add_argument("--get-fluxes", action="store_true", help="Run get_fluxes() and print results")
     parser.add_argument("--plot", action="store_true", help="Plot the asteroid geometry and light curve")
+    parser.add_argument("--scattering", choices=["lambert", "lommel", "hapke"], default="lambert", help="Scattering law to use: lambert, lommel, or hapke (default: lambert)")
     args = parser.parse_args()
 
     asteroid = Asteroid(args=args, filename=args.filename)
