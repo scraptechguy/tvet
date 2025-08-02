@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 import vispy
 import vispy.scene
 import vispy.visuals
@@ -124,7 +125,6 @@ class Asteroid(object):
 
         for i in range(n+1):
             gamma = 0 + 2.0*np.pi * i/n
-            # print("gamma = ", gamma/np.pi*180.0, " deg")
 
             x_ = x * np.cos(gamma) + y * np.sin(gamma)
             y_ = -x * np.sin(gamma) + y * np.cos(gamma)
@@ -137,12 +137,30 @@ class Asteroid(object):
             total.append((gamma, self.total))
 
         total = np.array(total)
-        np.savetxt("light_curve.txt", total)
 
+        # Normalize
         total[:, 0] = (total[:, 0] - np.min(total[:, 0])) / (np.max(total[:, 0]) - np.min(total[:, 0]))
         total[:, 1] = -(total[:, 1] - np.min(total[:, 1])) / (np.max(total[:, 1]) - np.min(total[:, 1]))
 
-        light_curve = vispy.scene.visuals.Line(pos=(total*200) + (40, 560), color='white', parent=self.canvas.scene)
+        return total
+
+    def plot_light_curve(self, curve_points):
+        if curve_points is None:
+            curve_points = self.light_curve()
+
+        plt.figure(figsize=(8, 4))
+        plt.plot(curve_points[:, 0], curve_points[:, 1], color='blue')
+        plt.xlabel('Normalized phase angle')
+        plt.ylabel('Normalized flux')
+        plt.title('Asteroid Light Curve')
+        plt.grid(True)
+        plt.tight_layout()
+        plt.show()
+
+    def interactive_plot_light_curve(self):
+        curve_points = self.light_curve()
+
+        light_curve = vispy.scene.visuals.Line(pos=(curve_points*200) + (40, 560), color='white', parent=self.canvas.scene)
         vispy.scene.visuals.Line(pos=((20, 570), (250, 570)), color='white', parent=self.canvas.scene)
         vispy.scene.visuals.Line(pos=((30, 360), (30, 580)), color='white', parent=self.canvas.scene)
 
@@ -329,6 +347,7 @@ class Asteroid(object):
                 self.get_fluxes()
 
             elif event.key == 'l':
-                self.light_curve()
+                curve_points = self.light_curve()
+                self.plot_light_curve(curve_points)
 
         self.canvas.show()

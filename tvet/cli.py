@@ -19,6 +19,8 @@ def main():
     parser.add_argument("--get-geometry", action="store_true", help="Run get_geometry() and print results")
     parser.add_argument("--get-cosines", action="store_true", help="Run get_cosines() and print results")
     parser.add_argument("--get-fluxes", action="store_true", help="Run get_fluxes() and print results")
+    parser.add_argument("--light-curve", action="store_true", help="Save the asteroid light curve points to output/light_curve.txt")
+    parser.add_argument("--plot-light-curve", action="store_true", help="Plot the asteroid light curve using matplotlib")
     parser.add_argument("--interactive-plot", action="store_true", help="Plot the interactive asteroid geometry and light curve")
     parser.add_argument("--scattering", choices=["lambert", "lommel", "hapke"], default="lambert", help="Scattering law to use: lambert, lommel, or hapke (default: lambert)")
     parser.add_argument('--s', type=parse_vector, default=np.array([1,0,0]), help="Incident light vector, e.g. '1,0,0'")
@@ -67,6 +69,15 @@ def main():
         print("Length of phi_e:", len(asteroid.phi_e))
         print("\nTotal flux:", asteroid.total)
         print(f"SAVED TOTAL FLUX TO {output_dir}/total_flux.txt\n")
+
+    if args.light_curve:
+        curve_points = asteroid.light_curve()
+        np.savetxt(os.path.join(output_dir, "light_curve.txt"), curve_points)
+        print(f"SAVED LIGHT CURVE TO {output_dir}/light_curve.txt\n")
+
+    if args.plot_light_curve:
+        curve_points = asteroid.light_curve()
+        asteroid.plot_light_curve(curve_points)
 
     if args.interactive_plot:
         asteroid.interactive_plot()
