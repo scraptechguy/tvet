@@ -31,11 +31,6 @@ class Asteroid(object):
         else:
             self.f_func = scattering.f_lambert
 
-        self.get_geometry()
-        self.get_cosines()
-        self.get_fluxes()
-        self.plot()
-
     def get_geometry(self):
         self.centers = []
         self.normals = []
@@ -58,6 +53,8 @@ class Asteroid(object):
         self.normals = np.array(self.normals)
 
     def get_cosines(self, s=(1, 0, 0), o=(0, 0, 1)):
+        self.get_geometry()
+
         self.s = np.array(s)
         self.o = np.array(o)
         self.alpha = np.arccos(np.dot(s, o))
@@ -100,6 +97,11 @@ class Asteroid(object):
         self.nu_e = np.array(nu_e_F, order='C')
 
     def get_fluxes(self):
+        self.get_geometry()
+        s = self.args.s if self.args and hasattr(self.args, "s") else (1, 0, 0)
+        o = self.args.o if self.args and hasattr(self.args, "o") else (0, 0, 1)
+        self.get_cosines(s=s, o=o)
+
         phi_s = 1361. # W/m^2
         self.phi_i = phi_s * self.mu_i * self.nu_i
 
@@ -144,7 +146,14 @@ class Asteroid(object):
         vispy.scene.visuals.Line(pos=((20, 570), (250, 570)), color='white', parent=self.canvas.scene)
         vispy.scene.visuals.Line(pos=((30, 360), (30, 580)), color='white', parent=self.canvas.scene)
 
-    def plot(self):
+    def interactive_plot(self):
+        # Call geometry and flux setup with CLI vectors
+        self.get_geometry()
+        s = self.args.s if self.args and hasattr(self.args, "s") else (1, 0, 0)
+        o = self.args.o if self.args and hasattr(self.args, "o") else (0, 0, 1)
+        self.get_cosines(s=s, o=o)
+        self.get_fluxes()
+
         # Provide defaults if args is None
         shininess = self.args.shininess if self.args and hasattr(self.args, "shininess") else 100
         wireframe_width = self.args.wireframe_width if self.args and hasattr(self.args, "wireframe_width") else 1
