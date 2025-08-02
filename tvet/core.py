@@ -279,7 +279,7 @@ class Asteroid(object):
                 vispy.app.quit()
 
             elif event.key == 's':
-                vispy.io.write_png("vispy_screenshot.png", vispy.gloo.util._screenshot())
+                vispy.io.write_png("output/vispy_screenshot.png", vispy.gloo.util._screenshot())
 
             elif event.key == '1':
                 plot_fluxes(phi=self.phi_i)
