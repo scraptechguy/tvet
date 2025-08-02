@@ -44,6 +44,14 @@ def main():
     output_dir = "output"
     os.makedirs(output_dir, exist_ok=True)
 
+    output_flags = [
+        args.geometry,
+        args.cosines,
+        args.fluxes,
+        args.light_curve,
+        args.plot_light_curve
+    ]
+
     if args.geometry:
         asteroid.get_geometry()
         np.savetxt(os.path.join(output_dir, "centers.txt"), asteroid.centers)
@@ -89,7 +97,8 @@ def main():
         curve_points = asteroid.light_curve()
         asteroid.plot_light_curve(curve_points)
 
-    if args.interactive_plot:
+    # Interactive plot is default if no output flags are set, or if explicitly requested
+    if args.interactive_plot or not any(output_flags):
         asteroid.interactive_plot()
         vispy.app.run()
 
