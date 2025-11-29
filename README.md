@@ -10,15 +10,15 @@ brew install gcc
 ## Project structure
 
 ```bash
-tvet/           ← root of your repo
-├── tvet/       ← your package
+tvet/           ← root of the repo
+├── tvet/       ← package
 │   ├── __init__.py
-│   ├── cli.py             ← your `main()` moved here
+│   ├── cli.py             ← `main()`
 │   ├── core.py            ← `Asteroid` class + helpers
 │   ├── photometry.py      ← `f_lambert`/`f_lommel`/`f_hapke`
 │   ├── geometry.py        ← loading, normals, cosines, fluxes
 │   ├── io.py              ← OBJ loading, file dialogs
-│   └── _shadowing.py      ← your fmodpy import wrapper
+│   └── _shadowing.py      ← fmodpy import wrapper
 ├── tests/                 ← pytest tests
 │   ├── test_core.py
 │   └── test_photometry.py
